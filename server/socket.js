@@ -53,11 +53,15 @@ export const setupSocket = (io, redisClient) => {
         };
 
         // 1. Save to Redis for blazing fast retrieval
-        const redisKey = `trip:${tripId}:messages`;
-        await redisClient.rPush(redisKey, JSON.stringify(messageData));
-        
-        // Keep only last 100 messages in cache
-        await redisClient.lTrim(redisKey, -100, -1);
+        try {
+          const redisKey = `trip:${tripId}:messages`;
+          await redisClient.rPush(redisKey, JSON.stringify(messageData));
+          
+          // Keep only last 100 messages in cache
+          await redisClient.lTrim(redisKey, -100, -1);
+        } catch (redisErr) {
+          console.error('Redis cache error:', redisErr.message);
+        }
 
         // 2. Broadcast to room
         io.to(tripId).emit('receive_message', messageData);
