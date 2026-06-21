@@ -13,7 +13,6 @@ export const NotificationProvider = ({ children }) => {
   const [unreadCount, setUnreadCount] = useState(0);
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-  const SOCKET_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:5000';
 
   useEffect(() => {
     if (!isSignedIn || !user) return;
@@ -36,6 +35,9 @@ export const NotificationProvider = ({ children }) => {
     };
 
     fetchNotifications();
+
+    let SOCKET_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '') : 'http://localhost:5000';
+    SOCKET_URL = SOCKET_URL.replace(/\/+$/, '');
 
     // Connect to global socket for personal notifications
     const socket = io(SOCKET_URL, {
