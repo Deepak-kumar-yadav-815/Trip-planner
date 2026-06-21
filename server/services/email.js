@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.resend.com',
+  host: process.env.SMTP_HOST || 'smtp.resend.com',// smpt must verify user mail id
   port: process.env.SMTP_PORT || 587,
   auth: {
     user: process.env.SMTP_USER || 'resend',
