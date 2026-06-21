@@ -28,6 +28,7 @@ export const generateCheckpointSummary = async (checkpointName, type) => {
       });
       summaryText = interaction.output_text;
     } catch (aiError) {
+      //adding ai fallback system with grok api 
       console.warn("Gemini AI failed, attempting Groq fallback...", aiError.message);
       
       const groqKey = process.env.GROQ_API_KEY;
