@@ -6,7 +6,9 @@ export function useTripSocket(tripId, setTrip, setMessages, setMemberStatuses, s
 
   useEffect(() => {
     const SOCKET_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:5000';
-    socketRef.current = io(SOCKET_URL);
+    socketRef.current = io(SOCKET_URL, {
+      transports: ['websocket']
+    });
     socketRef.current.on('connect', () => {
       socketRef.current.emit('join_trip', tripId);
     });

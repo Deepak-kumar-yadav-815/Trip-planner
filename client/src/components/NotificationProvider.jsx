@@ -38,7 +38,9 @@ export const NotificationProvider = ({ children }) => {
     fetchNotifications();
 
     // Connect to global socket for personal notifications
-    const socket = io(SOCKET_URL);
+    const socket = io(SOCKET_URL, {
+      transports: ['websocket']
+    });
     
     // We assume backend gets user's database ID. Since we only have Clerk ID here,
     // we should fetch the DB ID or let the backend emit using Clerk ID?
