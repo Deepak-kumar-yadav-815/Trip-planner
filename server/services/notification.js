@@ -4,7 +4,7 @@ import { getIo } from '../socket.js'; // Need to export io from socket.js
 
 export const createNotification = async (userId, message, type = 'info', tripId = null) => {
   try {
-    const notification = await Notification.create({
+    const notification = await Notification.create({  // will create the notification.
       userId,
       tripId,
       message,
@@ -27,7 +27,7 @@ export const createNotification = async (userId, message, type = 'info', tripId 
 
 export const broadcastToTrip = async (tripId, message, type = 'info', excludeUserId = null) => {
   try {
-    const trip = await Trip.findById(tripId).populate('members.user');
+    const trip = await Trip.findById(tripId).populate('members.user');  // find the user by trip id.
     if (!trip) return;
 
     for (const m of trip.members) {
@@ -40,6 +40,7 @@ export const broadcastToTrip = async (tripId, message, type = 'info', excludeUse
       }
     }
   } catch (error) {
+    // catch the error.
     console.error('Error broadcasting notification to trip:', error);
   }
 };
