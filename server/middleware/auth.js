@@ -21,7 +21,7 @@ export const syncUser = async (req, res, next) => {
     // hit a /api/users/sync endpoint to populate full details on first login.
     if (!user) {
       user = await User.create({
-        clerkId: userId,
+        clerkId: userId, // we are assigning clerId to userId 
         name: 'New User',
         email: 'placeholder@email.com' // Should be updated by frontend
       });
