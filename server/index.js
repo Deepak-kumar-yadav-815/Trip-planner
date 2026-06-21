@@ -75,13 +75,11 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/map', mapRoutes);
 
 // Basic Route
+app.get('/ping', (req, res) => {
+    res.status(200).json({ message: 'pong' });
+});
 app.get('/', (req, res) => {
   res.send('Realtime Trip Planner API is running');
 });
-
-app.get('/ping',(req,res)=>{
-  res.send('Pong');
-});
-
 // Socket.io connection setup
 setupSocket(io, redisClient);
