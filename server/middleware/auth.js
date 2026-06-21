@@ -27,6 +27,8 @@ export const syncUser = async (req, res, next) => {
       });
     }
 
+    // if the user is authentic then we will attach that user to the req object so to
+    //   reference it the next call.
     req.dbUser = user;
     next();
   } catch (error) {
