@@ -22,7 +22,7 @@ export default function Appbar() {
       <div className="container flex h-full items-center justify-between">
         <div className="flex items-center gap-4">
           <Link to="/" className="flex items-center space-x-2 group">
-            <span className="font-extrabold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-primary/70 group-hover:opacity-80 transition-opacity">Realtime TripPlanner</span>
+            <span className="font-extrabold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-primary/70 group-hover:opacity-80 transition-opacity">Voyage</span>
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4">
